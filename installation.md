@@ -456,7 +456,7 @@ ldappasswd -S -Y EXTERNAL -H ldapi:/// cn=replicator,dc=cryptonomics,dc=co,dc=th
 ### ใช้ ldapmodify เพื่อ setup ACL Limit
 
 ```sh
-ldapmodify -Q -Y EXTERNAL -H ldapi:/// -f replicator-acl-limits.ldif
+ldapmodify -Q -Y EXTERNAL -H ldapi:/// -f resouces/ldif/replicator-acl-limits.ldif
 ```
 
 ### Setup `syncprov` Overlay ให้เครื่อง Provider
