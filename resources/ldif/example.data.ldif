@@ -1,0 +1,95 @@
+dn: dc=cryptonomics,dc=co,dc=th
+objectClass: top
+objectClass: dcObject
+objectClass: organization
+o: cryptonomics.co.th
+dc: cryptonomics
+structuralObjectClass: organization
+entryUUID: fc3bf170-9045-103a-95be-a559b9a67a35
+creatorsName: cn=admin,dc=cryptonomics,dc=co,dc=th
+createTimestamp: 20200921110438Z
+entryCSN: 20200921110438.314760Z#000000#000#000000
+modifiersName: cn=admin,dc=cryptonomics,dc=co,dc=th
+modifyTimestamp: 20200921110438Z
+
+dn: cn=admin,dc=cryptonomics,dc=co,dc=th
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+cn: admin
+description: LDAP administrator
+userPassword: {SSHA}xxxx
+structuralObjectClass: organizationalRole
+entryUUID: fc3d07a4-9045-103a-95bf-a559b9a67a35
+creatorsName: cn=admin,dc=cryptonomics,dc=co,dc=th
+createTimestamp: 20200921110438Z
+entryCSN: 20200921110438.321925Z#000000#000#000000
+modifiersName: cn=admin,dc=cryptonomics,dc=co,dc=th
+modifyTimestamp: 20200921110438Z
+
+dn: ou=people,dc=cryptonomics,dc=co,dc=th
+objectClass: organizationalUnit
+objectClass: top
+ou: people
+structuralObjectClass: organizationalUnit
+entryUUID: 0657743e-90d9-103a-9cdb-7b83decb964a
+creatorsName: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
+createTimestamp: 20200922043711Z
+entryCSN: 20200922043711.291541Z#000000#000#000000
+modifiersName: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
+modifyTimestamp: 20200922043711Z
+
+dn: ou=groups,dc=cryptonomics,dc=co,dc=th
+objectClass: organizationalUnit
+objectClass: top
+ou:: Z3JvdXBzIA==
+structuralObjectClass: organizationalUnit
+entryUUID: 0657dcbc-90d9-103a-9cdc-7b83decb964a
+creatorsName: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
+createTimestamp: 20200922043711Z
+entryCSN: 20200922043711.294242Z#000000#000#000000
+modifiersName: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
+modifyTimestamp: 20200922043711Z
+
+dn: cn=readonly,ou=people,dc=cryptonomics,dc=co,dc=th
+objectClass: organizationalRole
+objectClass: simpleSecurityObject
+cn: readonly
+userPassword: {SSHA}xxxx
+description: Bind DN user for LDAP Operations
+structuralObjectClass: organizationalRole
+entryUUID: 2a3157b6-90da-103a-9cdf-7b83decb964a
+creatorsName: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
+createTimestamp: 20200922044520Z
+entryCSN: 20200922044520.936504Z#000000#000#000000
+modifiersName: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
+modifyTimestamp: 20200922044520Z
+
+dn: ou=SUDOers,dc=cryptonomics,dc=co,dc=th
+objectClass: organizationalUnit
+ou: SUDOers
+description: Cryptonomics LDAP SUDO Entry
+structuralObjectClass: organizationalUnit
+entryUUID: f5c39d2c-90fc-103a-810b-8501aae7695a
+creatorsName: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
+createTimestamp: 20200922085425Z
+entryCSN: 20200922085425.361380Z#000000#000#000000
+modifiersName: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
+modifyTimestamp: 20200922085425Z
+
+dn: cn=defaults,ou=SUDOers,dc=cryptonomics,dc=co,dc=th
+objectClass: top
+objectClass: sudoRole
+cn: defaults
+description: Cryptonomics LDAP sudoer
+sudoOption: env_reset
+sudoOption: mail_badpass
+sudoOption: secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/
+ sbin:/bin:/snap/bin"
+sudoOrder: 1
+structuralObjectClass: sudoRole
+entryUUID: 2939812e-9109-103a-810c-8501aae7695a
+creatorsName: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
+createTimestamp: 20200922102145Z
+entryCSN: 20200922102145.658554Z#000000#000#000000
+modifiersName: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
+modifyTimestamp: 20200922102145Z

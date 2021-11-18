@@ -1,0 +1,6 @@
+dn: cn=replicator,dc=cryptonomics,dc=co,dc=th
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+cn: replicator
+description: Replication user
+userPassword: {CRYPT}xxxx
