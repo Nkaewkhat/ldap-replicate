@@ -167,13 +167,13 @@ hostnamectl
 
 ```sh
 #generate new private key
-openssl ecparam -genkey -name secp384r1 > resouces/certificate/ldap-provider.cryptonomics.co.th.key
+openssl ecparam -genkey -name secp384r1 > resources/certificate/ldap-provider.cryptonomics.co.th.key
 
 #generate new csr, change `emailAddress=email@cryptonomics.co.th` to your legit email Address
-openssl req -new -subj "/C=TH/ST=./L=Bangkok/O=GMO-Z.com Cryptonomics (Thailand) Co., Ltd./OU=IT/CN=ldap-provider.cryptonomics.co.th/emailAddress=email@cryptonomics.co.th" -addext "subjectAltName = DNS:ldap-provider.cryptonomics.co.th" -key resouces/certificate/ldap-provider.cryptonomics.co.th.key -out resouces/certificate/ldap-provider.cryptonomics.co.th.csr
+openssl req -new -subj "/C=TH/ST=./L=Bangkok/O=GMO-Z.com Cryptonomics (Thailand) Co., Ltd./OU=IT/CN=ldap-provider.cryptonomics.co.th/emailAddress=email@cryptonomics.co.th" -addext "subjectAltName = DNS:ldap-provider.cryptonomics.co.th" -key resources/certificate/ldap-provider.cryptonomics.co.th.key -out resources/certificate/ldap-provider.cryptonomics.co.th.csr
 
 #show csr
-cat resouces/certificate/ldap-provider.cryptonomics.co.th.csr
+cat resources/certificate/ldap-provider.cryptonomics.co.th.csr
 
 -----BEGIN CERTIFICATE REQUEST-----
 #
@@ -184,19 +184,19 @@ cat resouces/certificate/ldap-provider.cryptonomics.co.th.csr
 
 Copy ข้อมูลของไฟล์ CSR ตั้งแต่ `-----BEGIN CERTIFICATE REQUEST-----` ถึง `-----END CERTIFICATE REQUEST-----` แล้วส่งไปเปิด Ticket เพื่อออก Certificate
 
-Save certificate ที่ถูก Sign ไว้ใน `resouces/certificate/ldap-provider.cryptonomics.co.th.crt`
+Save certificate ที่ถูก Sign ไว้ใน `resources/certificate/ldap-provider.cryptonomics.co.th.crt`
 
 ### ในเครื่อง ldap-consumer
 
 ```sh
 #generate new private key
-openssl ecparam -genkey -name secp384r1 > resouces/certificate/ldap-consumer.cryptonomics.co.th.key
+openssl ecparam -genkey -name secp384r1 > resources/certificate/ldap-consumer.cryptonomics.co.th.key
 
 #generate new csr, change `emailAddress=email@cryptonomics.co.th` to your legit email Address
-openssl req -new -subj "/C=TH/ST=./L=Bangkok/O=GMO-Z.com Cryptonomics (Thailand) Co., Ltd./OU=IT/CN=ldap-consumer.cryptonomics.co.th/emailAddress=email@cryptonomics.co.th" -addext "subjectAltName = DNS:ldap-consumer.cryptonomics.co.th" -key resouces/certificate/ldap-consumer.cryptonomics.co.th.key -out resouces/certificate/ldap-consumer.cryptonomics.co.th.csr
+openssl req -new -subj "/C=TH/ST=./L=Bangkok/O=GMO-Z.com Cryptonomics (Thailand) Co., Ltd./OU=IT/CN=ldap-consumer.cryptonomics.co.th/emailAddress=email@cryptonomics.co.th" -addext "subjectAltName = DNS:ldap-consumer.cryptonomics.co.th" -key resources/certificate/ldap-consumer.cryptonomics.co.th.key -out resources/certificate/ldap-consumer.cryptonomics.co.th.csr
 
 #show csr
-cat resouces/certificate/ldap-consumer.cryptonomics.co.th.csr
+cat resources/certificate/ldap-consumer.cryptonomics.co.th.csr
 
 -----BEGIN CERTIFICATE REQUEST-----
 #
@@ -207,7 +207,7 @@ cat resouces/certificate/ldap-consumer.cryptonomics.co.th.csr
 
 Copy ข้อมูลของไฟล์ CSR ตั้งแต่ `-----BEGIN CERTIFICATE REQUEST-----` ถึง `-----END CERTIFICATE REQUEST-----` แล้วส่งไปเปิด Ticket เพื่อออก Certificate
 
-Save certificate ที่ถูก Sign ไว้ใน `resouces/certificate/ldap-consumer.cryptonomics.co.th.crt`
+Save certificate ที่ถูก Sign ไว้ใน `resources/certificate/ldap-consumer.cryptonomics.co.th.crt`
 
 &nbsp;
 
@@ -244,8 +244,8 @@ service slapd stop
 ### ติดตั้ง Trusted Root Certificate
 
 ```sh
-#เพิ่ม resouces/certificate/ca-cryptonomics.co.th.cer ลงใน Trusted Root
-cp resouces/certificate/ca-cryptonomics.co.th.cer /usr/local/share/ca-certificates/cacert.crt
+#เพิ่ม resources/certificate/ca-cryptonomics.co.th.cer ลงใน Trusted Root
+cp resources/certificate/ca-cryptonomics.co.th.cer /usr/local/share/ca-certificates/cacert.crt
 chmod 640 /usr/local/share/ca-certificates/cacert.crt
 update-ca-certificates
 ```
@@ -255,9 +255,9 @@ update-ca-certificates
 > Certificate ของ `provider` ใช้ `ldap-provider`, `consumer` ใช้ `ldap-consumer`
 
 ```sh
-cp resouces/certificate/ca-cryptonomics.co.th.cer /etc/ldap/sasl2/ca-cryptonomics.co.th.cer
-cp resouces/certificate/ldap-(provider|consumer).cryptonomics.co.th.key /etc/ldap/sasl2/ldap-(provider|consumer).cryptonomics.co.th.key
-cp resouces/certificate/ldap-(provider|consumer).cryptonomics.co.th.crt /etc/ldap/sasl2/ldap-(provider|consumer).cryptonomics.co.th.crt
+cp resources/certificate/ca-cryptonomics.co.th.cer /etc/ldap/sasl2/ca-cryptonomics.co.th.cer
+cp resources/certificate/ldap-(provider|consumer).cryptonomics.co.th.key /etc/ldap/sasl2/ldap-(provider|consumer).cryptonomics.co.th.key
+cp resources/certificate/ldap-(provider|consumer).cryptonomics.co.th.crt /etc/ldap/sasl2/ldap-(provider|consumer).cryptonomics.co.th.crt
 
 chmod -R 640 /etc/ldap/sasl2/* 
 chown -R openldap:openldap /etc/ldap/sasl2/* 
@@ -265,7 +265,7 @@ chown -R openldap:openldap /etc/ldap/sasl2/*
 
 ### เตรียมไฟล์ data.ldif
 
->จากไฟล์ `resouces/ldif/example.data.ldif` จะมีข้อมูลเบื้องต้นเพื่อใช้ในการจัดการ LDAP Database </br>
+>จากไฟล์ `resources/ldif/example.data.ldif` จะมีข้อมูลเบื้องต้นเพื่อใช้ในการจัดการ LDAP Database </br>
 >โดยจะมี account ถูกสร้างมาแล้ว 2 account คือ
 >
 >- `cn=admin,dc=cryptonomics,dc=co,dc=th`
@@ -274,7 +274,7 @@ chown -R openldap:openldap /etc/ldap/sasl2/*
 เราจะทำการคัดลอกไฟล์นี้
 
 ```sh
-cp resouces/ldif/example.data.ldif resouces/ldif/data.ldif
+cp resources/ldif/example.data.ldif resources/ldif/data.ldif
 ```
 
 และตั้ง Password ให้ 2 account นี้
@@ -289,10 +289,10 @@ slappasswd -h {SSHA} -s supersecurepasswordforreadonly
 # "{SSHA}n5zobTGg3Jzgo9wiFiJ1fp/XQ3bhsJ8x" (the output will change each time, even the input password is the same)
 ```
 
-นำค่า hashed ที่ได้ไปใส่ในไฟล์ `resouces/ldif/data.ldif` ที่ค่า `userPassword` ตามลำดับ
+นำค่า hashed ที่ได้ไปใส่ในไฟล์ `resources/ldif/data.ldif` ที่ค่า `userPassword` ตามลำดับ
 
 ```ldif
-#file: resouces/ldif/data.ldif
+#file: resources/ldif/data.ldif
 -
 dn: cn=admin,dc=cryptonomics,dc=co,dc=th
 objectClass: simpleSecurityObject
@@ -327,11 +327,11 @@ modifyTimestamp: 20200922044520Z
 
 ### เตรียมไฟล์ config.ldif
 
->จากไฟล์ `resouces/ldif/base.config.ldif` จะมี configuration ที่กำหนดไว้เป็นมาตฐานที่ต้องใช้แล้ว </br>
+>จากไฟล์ `resources/ldif/base.config.ldif` จะมี configuration ที่กำหนดไว้เป็นมาตฐานที่ต้องใช้แล้ว </br>
 >เราจะทำการคัดลอกเป็นไฟล์ config.ldif และแก้ไขบางส่วนในเพื่อให้นำไปใช้ให้ Server ทั้ง 2 เครื่อง
 
 ```ldif
-# file: resouces/ldif/config.ldif
+# file: resources/ldif/config.ldif
 
 # เปลี่ยน path/file ของ certificate ให้ตรงกับ hostname
 # provider ใช้ ldap-provider, consumer ใช้ ldap-consumer
@@ -364,8 +364,8 @@ mkdir /etc/ldap/slapd.d
 mkdir -p /var/lib/ldap
 
 # restore config, data
-slapadd -n 0 -F /etc/ldap/slapd.d/ -l resouces/ldif/config.ldif
-slapadd -n 1 -F /etc/ldap/slapd.d/ -l resouces/ldif/data.ldif
+slapadd -n 0 -F /etc/ldap/slapd.d/ -l resources/ldif/config.ldif
+slapadd -n 1 -F /etc/ldap/slapd.d/ -l resources/ldif/data.ldif
 
 # update folder permision
 chown -R openldap:openldap /etc/ldap/slapd.d/
@@ -439,13 +439,13 @@ systemctl enable slapd.service
 
 การทำ replicate จะต้องสร้าง account เอาไว้บน Provider เพื่อให้ Consumer สามารถ Login เข้าไปอ่านข้อมูลได้
 
-> เราจะใช้ไฟล์ `resouces/ldif/replicator.ldif` เป็นข้อมูลเพื่อสร้าง account บน Provider
+> เราจะใช้ไฟล์ `resources/ldif/replicator.ldif` เป็นข้อมูลเพื่อสร้าง account บน Provider
 
 ### ใช้ ldapadd เพื่อ save ลง LDAP Database แล้วใช้ ldappasswd เพื่อ update password
 
 ```sh
 #ใช้ ldapadd เพื่อ save ลง LDAP Database
-ldapadd -Q -Y EXTERNAL -H ldapi:/// -f resouces/ldif/replicator.ldif
+ldapadd -Q -Y EXTERNAL -H ldapi:/// -f resources/ldif/replicator.ldif
 
 #ใช้ ldappasswd เพื่อ update password
 ldappasswd -S -Y EXTERNAL -H ldapi:/// cn=replicator,dc=cryptonomics,dc=co,dc=th
@@ -456,16 +456,16 @@ ldappasswd -S -Y EXTERNAL -H ldapi:/// cn=replicator,dc=cryptonomics,dc=co,dc=th
 ### ใช้ ldapmodify เพื่อ setup ACL Limit
 
 ```sh
-ldapmodify -Q -Y EXTERNAL -H ldapi:/// -f resouces/ldif/replicator-acl-limits.ldif
+ldapmodify -Q -Y EXTERNAL -H ldapi:/// -f resources/ldif/replicator-acl-limits.ldif
 ```
 
 ### Setup `syncprov` Overlay ให้เครื่อง Provider
 
-> เราจะใช้ไฟล์ `resouces/ldif/provider_simple_sync.ldif` เพื่อสร้าง overlay
+> เราจะใช้ไฟล์ `resources/ldif/provider_simple_sync.ldif` เพื่อสร้าง overlay
 
 ```sh
 # สร้าง Overlay
-ldapadd -Q -Y EXTERNAL -H ldapi:/// -f resouces/ldif/provider_simple_sync.ldif
+ldapadd -Q -Y EXTERNAL -H ldapi:/// -f resources/ldif/provider_simple_sync.ldif
 
 # ตรวจสอบ contextCSN
 ldapsearch -Q -LLL -Y EXTERNAL -H ldapi:/// -s base -b dc=cryptonomics,dc=co,dc=th contextCSN
@@ -481,9 +481,9 @@ ldapsearch -Q -LLL -Y EXTERNAL -H ldapi:/// -s base -b dc=cryptonomics,dc=co,dc=
 
 &nbsp;
 
-> เราจะใช้ไฟล์ `resouces/ldif/base.consumer_sync.ldif` เป็นต้นแบบเพื่อสร้าง `resouces/ldif/consumer_sync.ldif`
+> เราจะใช้ไฟล์ `resources/ldif/base.consumer_sync.ldif` เป็นต้นแบบเพื่อสร้าง `resources/ldif/consumer_sync.ldif`
 
-เราจะเปลี่ยนรายละเอียดในไฟล์ `resouces/ldif/consumer_sync.ldif` ให้ตรงกับการตั้งค่าบน Provider ดังนี้
+เราจะเปลี่ยนรายละเอียดในไฟล์ `resources/ldif/consumer_sync.ldif` ให้ตรงกับการตั้งค่าบน Provider ดังนี้
 
 ```ldif
 dn: cn=module{0},cn=config
@@ -522,7 +522,7 @@ olcUpdateRef: ldap://ldap-provider.cryptonomics.co.th
 แล้วใช้ `ldapadd` เพื่อ update config ของ `ldap-consumer`
 
 ```sh
-ldapadd -Q -Y EXTERNAL -H ldapi:/// -f resouces/ldif/consumer_sync.ldif
+ldapadd -Q -Y EXTERNAL -H ldapi:/// -f resources/ldif/consumer_sync.ldif
 ```
 
 ### ตรวจสอบการ Sync
